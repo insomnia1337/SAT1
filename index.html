@@ -19,11 +19,11 @@
             <button id="generate" class="btn btn-warning">Wygeneruj kandydatów</button>
             <p id="info" class="text-right"></p>
     </div>
-    <div class="container-fluid col-md-9">
+    <div class="container-fluid col-lg-6 col-offset-left-3">
         <div class="panel panel-default">
-            <div class="panel-heading">Panel heading</div>
+            <div class="panel-heading">Rekrutacja</div>
             <div class="panel-body">
-                <p>Kadydaci na stanowisko programisty w UEK-Soft.</p>
+                <p>Kandydaci na stanowisko programisty w UEK-Soft.</p>
             </div>
             <div>
                 <table class="table">
@@ -34,7 +34,7 @@
                             <th>Last Name</th>
                             <th>Age</th>
                             <th>Ability</th>
-                            <th>Leniwy?</th>
+                            <th>Laziness?</th>
                         </tr>
                     </thead>
                     <tbody id="tbody">
@@ -43,7 +43,6 @@
             </div>
         </div>
 </body>
-
 <script>
 
 
@@ -60,7 +59,7 @@
             surname: "Nowak",
             age: 34,
             abilities: "Programming",
-            lazy: false
+            lazy: true
         },
         {
             name: "Kasia",
@@ -87,6 +86,10 @@
     ];
 
 
+    const generateRandom = (workers, key) => {
+        return workers[Math.floor(Math.random() * 4 + 1)][key];
+    }
+
     const infoText = document.getElementById('info');
     const startBtn = document.getElementById('start')
     startBtn.addEventListener('click', () => {
@@ -99,10 +102,7 @@
             age = "age",
             abilities = "abilities",
             lazy = "lazy";
-        let text;
-        const generateRandom = (workers, key) => {
-            return workers[Math.floor(Math.random() * 4 + 1)][key];
-        }
+
 
         function generateTable() {
             return workers.map((el, index, arr) => `<tr>
@@ -116,7 +116,6 @@
         }
         const tbody = document.getElementById('tbody');
         tbody.innerHTML = generateTable();
-
     })
 
     const filterPersons = function ({ age, abilities: ability, lazy, surname }) {
@@ -132,9 +131,15 @@
             debugger;
             infoText.innerHTML = `Najlepszy pracownik na nasze stanowisko to ${found.name} ${found.surname}`
         } else {
-            console.log('brak');
+            infoText.innerHTML = `Brak osób spełniających kryteria`;
         }
     }
+
+    function generateWorkers(workers) {
+        const newArray = [];
+        return newArray;
+    };
+    generateWorkers(workers);
 
 </script>
 
