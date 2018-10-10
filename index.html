@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="jumbotron container-fluid">
+        <h2>Naciśnij start, aby rozpocząć wyszukiwanie najlepszego <br />
+            kandydata na stanowisko programisty.</h1>
+            <button id="start" class="btn btn-primary">Start</button>
+            <button id="generate" class="btn btn-warning">Wygeneruj kandydatów</button>
+            <p id="info" class="text-right"></p>
+    </div>
+    <div class="container-fluid col-md-9">
+        <div class="panel panel-default">
+            <div class="panel-heading">Panel heading</div>
+            <div class="panel-body">
+                <p>Kadydaci na stanowisko programisty w UEK-Soft.</p>
+            </div>
+            <div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Lp.</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Age</th>
+                            <th>Ability</th>
+                            <th>Leniwy?</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+</body>
+
+<script>
+
+
+    const workers = [
+        {
+            name: "James",
+            surname: "Kowalski",
+            age: 20,
+            abilities: "Programming",
+            lazy: true
+        },
+        {
+            name: "Mateusz",
+            surname: "Nowak",
+            age: 34,
+            abilities: "Programming",
+            lazy: false
+        },
+        {
+            name: "Kasia",
+            surname: "Cuch",
+            age: 56,
+            abilities: "Drawing",
+            lazy: false
+        },
+        {
+            name: "Bartłomiej",
+            surname: "Nil",
+            age: 33,
+            abilities: "Languages",
+            lazy: true
+        },
+        {
+            name: "Michał",
+            surname: "Chamera",
+            age: 24,
+            abilities: "Mathematics",
+            lazy: true
+        },
+
+    ];
+
+
+    const infoText = document.getElementById('info');
+    const startBtn = document.getElementById('start')
+    startBtn.addEventListener('click', () => {
+        showResults();
+    })
+    const generateBtn = document.getElementById('generate');
+    generateBtn.addEventListener('click', () => {
+        const name = "name",
+            surname = "surname",
+            age = "age",
+            abilities = "abilities",
+            lazy = "lazy";
+        let text;
+        const generateRandom = (workers, key) => {
+            return workers[Math.floor(Math.random() * 4 + 1)][key];
+        }
+
+        function generateTable() {
+            return workers.map((el, index, arr) => `<tr>
+                            <th scope="row">${index}</th>
+                            <td>${generateRandom(workers, name)}</td>
+                            <td>${generateRandom(workers, surname)}</td>
+                            <td>${generateRandom(workers, age)}</td>
+                            <td>${generateRandom(workers, abilities)}</td>
+                            <td>${generateRandom(workers, lazy)}</td>
+                        </tr>`).join('');
+        }
+        const tbody = document.getElementById('tbody');
+        tbody.innerHTML = generateTable();
+
+    })
+
+    const filterPersons = function ({ age, abilities: ability, lazy, surname }) {
+        debugger;
+        return age > 22 && ability === 'Programming' && !lazy;
+    }
+
+
+    function showResults() {
+        debugger;
+        const found = workers.find(filterPersons);
+        if (found) {
+            debugger;
+            infoText.innerHTML = `Najlepszy pracownik na nasze stanowisko to ${found.name} ${found.surname}`
+        } else {
+            console.log('brak');
+        }
+    }
+
+</script>
+
+</html>
