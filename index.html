@@ -15,8 +15,9 @@
     <div class="jumbotron container-fluid">
         <h2>Naciśnij start, aby rozpocząć wyszukiwanie najlepszego <br />
             kandydata na stanowisko programisty.</h1>
-            <button id="start" class="btn btn-primary">Start</button>
             <button id="generate" class="btn btn-warning">Wygeneruj kandydatów</button>
+            <button id="start" class="btn btn-primary">Znajdz!</button>
+
             <p id="info" class="text-right"></p>
     </div>
     <div class="container-fluid col-lg-6 col-offset-left-3">
@@ -59,7 +60,7 @@
             surname: "Nowak",
             age: 34,
             abilities: "Programming",
-            lazy: true
+            lazy: false
         },
         {
             name: "Kasia",
@@ -73,74 +74,85 @@
             surname: "Nil",
             age: 33,
             abilities: "Languages",
-            lazy: true
+            lazy: false
         },
         {
             name: "Michał",
             surname: "Chamera",
             age: 24,
             abilities: "Mathematics",
-            lazy: true
+            lazy: false
         },
 
     ];
+    const infoText = document.getElementById('info');
+    const startBtn = document.getElementById('start')
+    const generateBtn = document.getElementById('generate');
+    startBtn.addEventListener('click', () => {
+        showResults(workersGenerated);
+    })
 
 
     const generateRandom = (workers, key) => {
         return workers[Math.floor(Math.random() * 4 + 1)][key];
     }
 
-    const infoText = document.getElementById('info');
-    const startBtn = document.getElementById('start')
-    startBtn.addEventListener('click', () => {
-        showResults();
-    })
-    const generateBtn = document.getElementById('generate');
+
     generateBtn.addEventListener('click', () => {
-        const name = "name",
-            surname = "surname",
-            age = "age",
-            abilities = "abilities",
-            lazy = "lazy";
-
-
-        function generateTable() {
-            return workers.map((el, index, arr) => `<tr>
-                            <th scope="row">${index}</th>
-                            <td>${generateRandom(workers, name)}</td>
-                            <td>${generateRandom(workers, surname)}</td>
-                            <td>${generateRandom(workers, age)}</td>
-                            <td>${generateRandom(workers, abilities)}</td>
-                            <td>${generateRandom(workers, lazy)}</td>
-                        </tr>`).join('');
-        }
-        const tbody = document.getElementById('tbody');
-        tbody.innerHTML = generateTable();
+        const tbody = document.getElementById('tbody'); 
+        tbody.innerHTML = generateTable(workersGenerated);
     })
 
-    const filterPersons = function ({ age, abilities: ability, lazy, surname }) {
+    const filterPersons = function ({ age, abilities: ability, lazy }) {
         debugger;
         return age > 22 && ability === 'Programming' && !lazy;
     }
 
 
-    function showResults() {
-        debugger;
-        const found = workers.find(filterPersons);
+    function showResults(array) {
+        const found = array.find(filterPersons);
         if (found) {
-            debugger;
             infoText.innerHTML = `Najlepszy pracownik na nasze stanowisko to ${found.name} ${found.surname}`
         } else {
             infoText.innerHTML = `Brak osób spełniających kryteria`;
         }
     }
-
-    function generateWorkers(workers) {
+    let workersGenerated = generateWorkers(workers) // ze starej tablicy stattycznej "workers"
+    function generateWorkers(workers) { // zapisujemy array do obiektu randomowy
+        debugger;
+        const name = "name",
+            surname = "surname",
+            age = "age",
+            abilities = "abilities",
+            lazy = "lazy";
         const newArray = [];
-        return newArray;
-    };
-    generateWorkers(workers);
 
+        for (i = 0; i < workers.length; i++) {
+            const workersProperties = {
+                name: generateRandom(workers, name),
+                surname: generateRandom(workers, surname),
+                age: generateRandom(workers, age),
+                abilities: generateRandom(workers, abilities),
+                lazy: generateRandom(workers, lazy)
+            }
+            newArray.push(workersProperties)
+        }
+        return newArray
+    };
+
+    function generateTable(newArray) {
+        return newArray.map((el, index) =>
+            `<tr>
+                            <th scope="row">${index}</th>
+                            <td>${el.name}</td>
+                            <td>${el.surname}</td>
+                            <td>${el.age}</td>
+                            <td>${el.abilities}</td>
+                            <td>${el.lazy}</td>
+                        </tr>`).join('');
+    }
+
+        
 </script>
 
 </html>
