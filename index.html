@@ -83,25 +83,48 @@
             abilities: "Mathematics",
             lazy: false
         },
+        {
+            name: "Justyna",
+            surname: "Wójcik",
+            age: 45,
+            abilities: "Mathematics",
+            lazy: false
+        },
+        {
+            name: "Daniel",
+            surname: "Babraj",
+            age: 21,
+            abilities: "Mathematics",
+            lazy: false
+        },
+        {
+            name: "Daria",
+            surname: "Kowalski",
+            age: 19,
+            abilities: "Mathematics",
+            lazy: false
+        },
 
     ];
     const infoText = document.getElementById('info');
     const startBtn = document.getElementById('start')
     const generateBtn = document.getElementById('generate');
+
     startBtn.addEventListener('click', () => {
         showResults(workersGenerated);
     })
 
+    generateBtn.addEventListener('click', () => {
+        const tbody = document.getElementById('tbody');
+        workersGenerated = generateWorkers(workers)
+        tbody.innerHTML = generateTable(workersGenerated);
+    
+    })
 
     const generateRandom = (workers, key) => {
-        return workers[Math.floor(Math.random() * 4 + 1)][key];
+        return workers[Math.floor(Math.random() * 7 + 1)][key];
     }
 
-
-    generateBtn.addEventListener('click', () => {
-        const tbody = document.getElementById('tbody'); 
-        tbody.innerHTML = generateTable(workersGenerated);
-    })
 
     const filterPersons = function ({ age, abilities: ability, lazy }) {
         debugger;
@@ -117,7 +140,13 @@
             infoText.innerHTML = `Brak osób spełniających kryteria`;
         }
     }
+
+
+
     let workersGenerated = generateWorkers(workers) // ze starej tablicy stattycznej "workers"
+
+
+
     function generateWorkers(workers) { // zapisujemy array do obiektu randomowy
         debugger;
         const name = "name",
@@ -152,7 +181,7 @@
                         </tr>`).join('');
     }
 
-        
+
 </script>
 
 </html>
