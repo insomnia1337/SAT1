@@ -67,7 +67,6 @@ startBtn.addEventListener('click', () => {
 })
 
 generateBtn.addEventListener('click', () => {
-    debugger;
     const tbody = document.getElementById('tbody');
     infoText.innerHTML = null;
     workersGenerated = generateWorkers(workers)
