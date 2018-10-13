@@ -5,10 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
         crossorigin="anonymous">
     <link rel="stylesheet" href="styles.css">
+    <title>Przeszukiwanie lokalne SAT1</title>
 </head>
 
 <body>
@@ -16,7 +16,7 @@
         <h2>Naciśnij start, aby rozpocząć wyszukiwanie najlepszego <br />
             kandydata na stanowisko programisty.</h1>
             <button id="generate" class="btn btn-warning">Wygeneruj kandydatów</button>
-            <button id="start" class="btn btn-primary">Znajdz!</button>
+            <button id="start" class="btn btn-primary">Szukaj!</button>
 
             <p id="info" class="text-right"></p>
     </div>
@@ -31,11 +31,11 @@
                     <thead>
                         <tr>
                             <th>Lp.</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Age</th>
-                            <th>Ability</th>
-                            <th>Laziness?</th>
+                            <th>Imię</th>
+                            <th>Nazwisko</th>
+                            <th>Wiek</th>
+                            <th>Zdolności</th>
+                            <th>Lenistwo</th>
                         </tr>
                     </thead>
                     <tbody id="tbody">
@@ -43,6 +43,8 @@
                 </table>
             </div>
         </div>
+    </div>
+    
 </body>
 <script src="index.js"></script>
 

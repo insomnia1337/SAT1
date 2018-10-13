@@ -1,15 +1,15 @@
 const workers = [
     {
-        name: "James",
+        name: "Artur",
         surname: "Kowalski",
-        age: 20,
+        age: 21,
         abilities: "Programming",
         lazy: true
     },
     {
         name: "Mateusz",
         surname: "Nowak",
-        age: 34,
+        age: 27,
         abilities: "Programming",
         lazy: false
     },
@@ -24,7 +24,7 @@ const workers = [
         name: "Bartłomiej",
         surname: "Nil",
         age: 33,
-        abilities: "Languages",
+        abilities: "Teamwork",
         lazy: true
     },
     {
@@ -37,22 +37,22 @@ const workers = [
     {
         name: "Justyna",
         surname: "Wójcik",
-        age: 45,
-        abilities: "Mathematics",
+        age: 23,
+        abilities: "Time Management",
         lazy: true
     },
     {
         name: "Daniel",
-        surname: "Babraj",
+        surname: "Surdziel",
         age: 21,
-        abilities: "Mathematics",
+        abilities: "Adaptability",
         lazy: false
     },
     {
         name: "Daria",
         surname: "Kowalski",
         age: 19,
-        abilities: "Mathematics",
+        abilities: "Creativity",
         lazy: true
     },
 
@@ -69,6 +69,7 @@ startBtn.addEventListener('click', () => {
 generateBtn.addEventListener('click', () => {
     debugger;
     const tbody = document.getElementById('tbody');
+    infoText.innerHTML = null;
     workersGenerated = generateWorkers(workers)
     tbody.innerHTML = generateTable(workersGenerated);
 })
@@ -80,16 +81,16 @@ const generateRandom = (workers, key) => {
 
 const filterPersons = ({ age, abilities: ability, lazy }) => {
     debugger;
-    return age > 22 && ability === 'Programming' && !lazy;
+    return (age > 21 && age < 29) && ability === 'Programming' && !lazy;
 }
 
 
 function showResults(array) {
     const found = array.find(filterPersons);
     if (found) {
-        infoText.innerHTML = `Najlepszy pracownik na nasze stanowisko to ${found.name} ${found.surname}`
+        infoText.innerHTML = `Najlepszy pracownik na nasze stanowisko to ${found.name} ${found.surname}.`
     } else {
-        infoText.innerHTML = `Brak osób spełniających kryteria`;
+        infoText.innerHTML = `Brak osób spełniających kryteria!`;
     }
 }
 

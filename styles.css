@@ -1,0 +1,10 @@
+.jumbotron {
+padding-bottom: 65px;
+}
+
+#info {
+    display: flex;
+    position: absolute;
+    justify-content: flex-end;
+    width: 92%;
+}
